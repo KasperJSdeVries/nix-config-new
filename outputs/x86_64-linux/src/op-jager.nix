@@ -1,0 +1,47 @@
+{
+  inputs,
+  lib,
+  myvars,
+  mylib,
+  system,
+  genSpecialArgs,
+  ...
+} @ args: let
+  name = "jager";
+
+  base-modules = {
+    nixos-modules = map mylib.relativeToRoot [
+      "modules/nixos/desktop.nix"
+      "hosts/op-${name}"
+    ];
+
+    home-modules = map mylib.relativeToRoot [
+      "home/linux/gui.nix"
+      "hosts/op-${name}/home.nix"
+    ];
+  };
+
+  modules-hyprland = {
+    nixos-modules =
+      [
+        {
+          modules.desktop.fonts.enable = true;
+          modules.desktop.wayland.enable = true;
+        }
+      ]
+      ++ base-modules.nixos-modules;
+    home-modules =
+      [
+        {modules.desktop.hyprland.enable = true;}
+      ]
+      ++ base-modules.home-modules;
+  };
+in {
+  nixosConfigurations = {
+    "${name}-hyprland" = mylib.nixosSystem (modules-hyprland // args);
+  };
+
+  packages = {
+    "${name}-hyprland" = inputs.self.nixosConfigurations."${name}-hyprland".config.formats.iso;
+  };
+}
