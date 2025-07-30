@@ -9,7 +9,9 @@ in {
     mkSymlink = config.lib.file.mkOutOfStoreSymlink;
     hyprPath = "${config.home.homeDirectory}/nix-config/home/linux/gui/hyprland/conf";
   in {
+    "mako".source = mkSymlink "${hyprPath}/mako";
     "waybar".source = mkSymlink "${hyprPath}/waybar";
+    "wlogout".source = mkSymlink "${hyprPath}/wlogout";
     "hypr/hypridle.conf".source = mkSymlink "${hyprPath}/hypridle.conf";
     "hypr/configs".source = mkSymlink "${hyprPath}/configs";
   };
