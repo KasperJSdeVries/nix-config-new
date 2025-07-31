@@ -51,9 +51,9 @@
       log.date = "iso";
 
       url = {
-        "ssh://git@github.com/KasperJSdeVries" = {
-          insteadOf = "https://github.com/KasperJSdeVries";
-        };
+        # "ssh://git@github.com/KasperJSdeVries" = {
+        #   insteadOf = "https://github.com/KasperJSdeVries";
+        # };
       };
     };
 
