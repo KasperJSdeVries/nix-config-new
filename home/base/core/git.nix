@@ -19,14 +19,14 @@
         pv = "pr view";
       };
     };
-    hosts = {
-      "github.com" = {
-        "users" = {
-          "KasperJSdeVries" = null;
-        };
-        "user" = "KasperJSdeVries";
-      };
-    };
+    # hosts = {
+    #   "github.com" = {
+    #     "users" = {
+    #       "KasperJSdeVries" = null;
+    #     };
+    #     "user" = "KasperJSdeVries";
+    #   };
+    # };
   };
 
   programs.git = {
